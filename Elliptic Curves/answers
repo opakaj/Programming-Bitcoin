@@ -1,0 +1,45 @@
+
+package main
+
+import (
+	"math"
+	"reflect"
+	"fmt"
+)
+
+# tag::answer1[]
+func on_curve(x int, y int) bool {
+	return reflect.DeepEqual(math.Pow(float64(y), float64(2)), math.Pow(float64(x), float64(3))+float64(5*int(x))+7)
+}
+
+func main(){
+	fmt.Println(on_curve(2,4))  false
+	fmt.Println(on_curve(-1,-1)) true
+	fmt.Println(on_curve(18,77)) true
+	fmt.Println(on_curve(5,7)) false
+}
+
+For the curve __y__^2^ = __x__^3^ + 5__x__ + 7, what is (2,5) + (–1,–1)?
+# tag::answer4[]
+x1, y1 := 2, 5
+x2, y2 := -1, -1
+s = (y2 - y1) / (x2 - x1)
+x3 = math.Pow(float64(s),float64(2)) - x1 - x2
+y3 = s * (x1 - x3) - y1
+fmt.Println(x3, y3)
+3.0 -7.0
+
+# tag::exercise6[]
+==== Exercise 6
+
+For the curve __y__^2^ = __x__^3^ + 5__x__ + 7, what is (–1,–1) + (–1,–1)?
+# end::exercise6[]
+# tag::answer6[]
+a, x1, y1 := 5, -1, -1
+s = (3 * math.Pow(float64(x1), float64(2)) + a) / (2 * y1)
+x3 = math.Pow(float64(s), float64(2)) - 2*x1
+y3 = s*(x1-x3)-y1
+fmt.Prinln(x3,y3)
+18.0 77.0
+
+# end::answer6[]

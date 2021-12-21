@@ -1,0 +1,24 @@
+
+# tag::example1[]
+
+p1 := NewPoint{-1, -1, 5, 7}
+p2 := NewPoint{-1, -2, 5, 7} //error
+
+
+# end::example1[]
+# tag::example2[]
+
+p1 := Point(-1, -1, 5, 7)
+p2 := Point(-1, 1, 5, 7)
+inf := Point(0, 0, 5, 7)
+
+fmt.Println(p1.Add(inf))
+>>Point(-1,-1)_5_7
+
+fmt.Println(inf.Add(p2))
+>>Point(-1,1)_5_7
+
+fmt.Println(p1.Add(p2))
+>>Point(infinity)
+
+# end::example2[]
